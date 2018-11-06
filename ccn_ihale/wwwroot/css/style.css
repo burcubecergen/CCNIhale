@@ -1,0 +1,50 @@
+
+.navbar{
+	background-color: #172751;
+}
+/*login screen button color_code=#E31D1A*/
+footer p {
+	color:black;
+	size: 25px;
+}
+.top_size{
+	margin-top: 100px;
+}
+.top_sizec{
+	margin-top: 25px;
+}
+.h_bold{
+	font-weight: bold;
+}
+.h_position{
+	padding-top: 12px;
+}
+.p_fonttype{
+	font-family: "Trebuchet MS";
+	font-size:16px;
+	font-weight: normal;
+}
+.p_bold{
+	font-weight: bold;
+}
+.textbox_size{
+	width: 200px;
+}
+.p_right{
+	text-align: right;
+}
+.p_position{
+	padding-top: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+.p_right{
+	text-align: right;
+}
+.p_position_pass{
+	padding-left:50px;
+}
+.center_footer{
+	text-align: center;
+}
+}
