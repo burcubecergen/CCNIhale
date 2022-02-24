@@ -1,0 +1,274 @@
+﻿@model IhaleSoruModel
+@{
+    ViewData["Title"] = "Ihleditt";
+    Layout = "~/Views/Shared/_Layout_Second.cshtml";
+  
+}
+<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+<div class="container top_sizec ">
+    <div class="row">
+        <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-lg-2 col-md-2 col-sm-2 col-xs-4 ">
+            <a href="" id="backgroundandposition"><img src="~/images/login_ccninsaat.PNG" /></a>
+        </div>
+
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <h3 class="h3_bold h3_position x_hidden">
+                İHALE PLATFORMU
+            </h3>
+        </div>
+    </div>
+
+    @if (ViewBag.adminYetki && ViewBag.ihalePaket != null || ViewBag.ihaleYetki && ViewBag.ihalePaket != null)
+    {
+        <div class="row top_sizec" id="ihlshow">
+            <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                <div class="form-popup ">
+                    <div class="row top_sizey ">
+                        <div class="col-sm-offset-4 col-lg-offset-4 col-md-offset-4 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+                            <h4 class=" h4_color h4_bold">
+                                İHALE PAKET DÜZENLEME
+                            </h4>
+                        </div>
+                    </div>
+
+                    <form asp-action="Ihleditt" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" id="deleteid" asp-for="@Model.ihalepaket.ID" class="form-control textbox_size" />
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1  col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position">Proje Adı:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                <select asp-for="@Model.proje.ID" id="combobox1" class="combobox comb_size form-control">
+                                    @foreach (Project pr in Model.projeler)
+                                    {
+                                        if (pr.ID == Model.proje.ID)
+                                        {
+                                            <option value="@pr.ID">@pr.ProjectName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@pr.ID">@pr.ProjectName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1  col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position">İhale Konusu:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                        <input asp-for="@Model.ihalepaket.Konu" class="form-control textbox_size " />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <p class="p_bold p_colorred">@ViewBag.sign</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass">Yapılacağı Yerler:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                        <input asp-for="@Model.ihalepaket.YapilacagiYer" class="form-control textbox_size" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <p class="p_bold p_colorred">@ViewBag.sign</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass ">İhale Tarihi ve Saati:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 input-append date ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <div class="form-group">
+                                            <div class="input-group date form_datetime textbox_size" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                                <input asp-for="IhaleTarihi" class="form-control" size="16" readonly style="font-size:12px;" placeholder="@ViewBag.ihaletarihi">
+                                                <span class="input-group-addon "><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass ">Son Teslim Tarihi Ve Saati:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 input-append date ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <div class="form-group">
+                                            <div class="input-group date form_datetime textbox_size" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                                <input asp-for="SonTeslimTarihi" class="form-control" size="16" readonly style="font-size:12px;" placeholder="@ViewBag.teslimtarihi">
+                                                <span class="input-group-addon "><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1  col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position">İhale Türü:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                <select asp-for="@Model.ihalepaket.IhaleTuru" id="combobox1" class="combobox comb_size form-control">
+                                    <option value="Birim Fiyat Teklif Usülü">Birim Fiyat Teklif Usülü</option>
+                                    <option value="Götürü Bedel">Götürü Bedel</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p id="deneme" class="p_fonttype  p_size p_right p_position p_position_pass">İhale Dokümanlar:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="@Model.ihalepaket.FTPDosyaLink" class="form-control textbox_size" /><!-- asp-for="Sifre" -->
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p id="deneme" class="p_fonttype  p_size p_right p_position p_position_pass">Ek Dokümanlar 1:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="@Model.ihalepaket.FTPDosyaLink1" class="form-control textbox_size" /><!-- asp-for="Sifre" -->
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p id="deneme" class="p_fonttype  p_size p_right p_position p_position_pass">Ek Dokümanlar 2:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="@Model.ihalepaket.FTPDosyaLink2" class="form-control textbox_size" /><!-- asp-for="Sifre" -->
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec ">
+                            <div class="col-xs-offset-4 col-md-offset-4 col-sm-offset-4 col-lg-offset-4 col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                <p class="p_bold p_colorred">@ViewBag.error</p>
+                            </div>
+                        </div>
+                        <div class="row top_sizec ">
+                            <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <a asp-action="Ihl" asp-controller="Home" style="margin-bottom:10px;" class="btn btn-primary" role="button">Vazgeç</a>
+                            </div>
+                            @if (ViewBag.adminYetki)
+                            {
+                                <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <input onclick="myFunction()" type="button" class="btn btn-primary " style="margin-bottom:10px; margin-left:10px;" value="Sil" />
+                                </div>
+                                <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <button type="submit" class="btn btn-primary" style="margin-bottom:10px">Ekle</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <button type="submit" class="btn btn-primary" style="margin-bottom:10px">Ekle</button>
+                                </div>
+                            }
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div id="ihlyn" class="container">
+            <div  class="top_sizey">
+                <div class="col-sm-offset-2 col-lg-offset-2 col-md-offset-2 ">
+                   <p id="ihlsuccess" class="a_left p_size ">İhale paketi başarı ile silinmiştir.</p>
+                   <p id="ihlerror">İhale paketini silmeden önce ilgili ihale paketi içerisinde bulunan soruları siliniz.</p>
+                   <a id="back" class="top_sizec a_size a_left" href="~/Home/Ihleditt/@Model.ihalepaket.ID">Geri dönmek için tıklayınız</a>
+                   <a id="next" class="top_sizec a_size a_left" href="~/Home/Ihl">Devam etmek için tıklayınız</a>
+                </div>
+            </div>
+        </div>
+      
+        <script>
+            function myFunction() {
+                var deleteid = $('#deleteid').val();
+                
+                $.ajax({
+                    data: { 'deleteid': deleteid },
+                    url: '/Home/Ihleditt/' + deleteid,
+                    type: "GET",
+                    cache: false,
+                    success: function (data) {
+                        if (data == "success"){
+                            document.getElementById('ihlshow').style.display = 'none';
+                            document.getElementById('ihlerror').style.display = 'none';
+                            document.getElementById('back').style.display = 'none';
+                            document.getElementById('ihlsuccess').style.display = 'block';
+                            document.getElementById('next').style.display = 'block';
+                            document.getElementById('ihlyn').style.display = 'block';
+                        }
+                        else {
+                            document.getElementById('ihlshow').style.display = 'none';
+                            document.getElementById('ihlsuccess').style.display = 'none';
+                            document.getElementById('next').style.display = 'none';
+                            document.getElementById('ihlerror').style.display = 'block';
+                            document.getElementById('back').style.display = 'block';
+                            document.getElementById('ihlyn').style.display = 'block';
+                        }
+                    },
+                   
+                });
+            }
+        </script>
+     }
+    else
+    {
+        <div class="row top_sizey">
+            <div class="col-sm-offset-4 col-lg-offset-4 col-md-offset-4">
+                <h3>Herhangi bir ihale paketi bulunamadı!</h3>
+            </div>
+        </div>
+    }
+
+</div>

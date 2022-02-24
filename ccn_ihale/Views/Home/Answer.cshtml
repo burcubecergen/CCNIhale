@@ -1,0 +1,69 @@
+﻿@model SoruCevap
+@{
+    ViewData["Title"] = "Answer";
+    Layout = "~/Views/Shared/_Layout_Second.cshtml";
+}
+
+<div class="container top_sizec ">
+    <div class="row">
+        <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-lg-2 col-md-2 col-sm-2 col-xs-4 ">
+            <a href="" id="backgroundandposition"><img src="~/images/login_ccninsaat.PNG" /></a>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+            <h3 class="h3_bold h3_position x_hidden">
+                İHALE PLATFORMU
+            </h3>
+        </div>
+    </div>
+    @if (ViewBag.ihaleYetki || ViewBag.adminYetki)
+    {
+        <div class="row top_sizec">
+            <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-10 col-md-10 col-lg-10">
+                <div class="form-popup_textarea">
+                    <form asp-action="Answer" class="form-container" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="top_sizec">
+                            <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                                <h1 class="h1_color h1_position">Soru Cevap</h1>
+                                <p class="p_fonttype p_bold  p_position">Soru No</p>
+                                <input  asp-for="@Model.SoruNo" type="number" min="1"  class="form-control textbox_size combo_position_extended" />
+                            </div>
+                        </div>
+                        <div class="top_sizec">
+                            <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                                <p class="p_fonttype p_bold  p_position">Soru</p>
+                                <textarea asp-for="@Model.Soru" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="20"></textarea>
+                            </div>
+                        </div>
+                        <div class="top_sizec">
+                            <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                                <p class="p_fonttype p_bold  p_position">Cevap</p>
+                                <textarea asp-for="Cevap" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="20"></textarea>
+                            </div>
+                        </div>
+                        <div class="row top_sizec ">
+                            <div class="col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                <p class="p_bold p_colorred">@ViewBag.error</p>
+                            </div>
+                        </div>
+                        <div class="top_sizec">
+                            <div class="col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
+                                <a asp-action="Ihl" asp-controller="Home" class="btn btn-primary"  role="button">Vazgeç</a>
+                                <button type="submit" class="btn btn-primary">Ekle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    else{
+        <div class="row top_sizey">
+            <div class="col-sm-offset-4 col-lg-offset-4 col-md-offset-4">
+                <h3>Yetkiniz Bulunmamaktadır!</h3>
+            </div>
+        </div>
+    }
+</div>
+

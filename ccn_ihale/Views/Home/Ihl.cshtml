@@ -1,0 +1,300 @@
+﻿@model IhaleViewModel
+@{
+    ViewData["Title"] = "Ihl";
+    Layout = "~/Views/Shared/_Layout_Second.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+
+<div class="container-fluid top_sizec ">  
+    <div class="row">
+        <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-4 ">
+            <a href="" id="backgroundandposition"><img src="~/images/login_ccninsaat.PNG" /></a>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+            <h3 class="h3_bold h3_position x_hidden">
+                İHALE PLATFORMU
+            </h3>
+        </div>
+    </div>
+
+
+    <div class="row top_sizec">
+        <div class="col-xs-12 col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-11 col-lg-11 col-md-11">
+            <form asp-action="Ihl" method="get">
+                <table class="table_design">
+                    @if (ViewBag.ihalePaket != null)
+                    {
+                        <tr>
+                            <td>İHALE KONUSU</td>
+                            <td>
+                                <select asp-for="@Model.ihalepaket.ID" id="combobox1" class="combobox comb_size form-control">
+
+                                    @foreach (IhalePaket ih in Model.ihalepaketList)
+                                    {
+                                        @foreach (KullaniciIhaleYetkisi ki in Model.kullaniciihaleyetkilisiList)
+                                        {
+                                            if (ki.IhalePaketID == ih.ID)
+                                            {
+                                                <option value="@ih.ID">@ih.Konu </option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Proje Adı</td>
+
+                            @foreach (Project pr in Model.projeler)
+                            {
+                                if (Model.ihalepaket.ProjectID == pr.ID)
+                                {
+                                    <td>@pr.ProjectName</td>
+                                }
+                            }
+
+                        </tr>
+                        <tr>
+                            <td>Yapılacağı Yer</td>
+                            <td>@Model.ihalepaket.YapilacagiYer</td>
+                        </tr>
+                        <tr>
+                            <td>İhale Tarihi</td>
+                            <td>@ViewBag.ihaletarihi</td>
+                        </tr>
+                        <tr>
+                            <td>Son Teslim Tarihi ve Saati</td>
+                            <td>@ViewBag.teslimtarihi</td>
+                        </tr>
+                        <tr>
+                            <td>İhale Türü</td>
+                            <td>@Model.ihalepaket.IhaleTuru</td>
+                        </tr>
+                        <tr>
+                            <td>İhale Dokümanları</td>
+                            <td>
+                                @if (!String.IsNullOrEmpty(Model.ihalepaket.FTPDosyaLink))
+                                {
+                                    <a target="_blank" href="@Model.ihalepaket.FTPDosyaLink">indirmek için tıklayınız</a>
+                                    <a class="rar_right" target="_blank" href="@Model.ihalepaket.FTPDosyaLink"><img src="~/images/rar.png" /></a>
+                                }
+                            </td>
+
+                            </tr>
+                        <tr>
+                            <td>Ek Dokümanlar 1</td>
+                            <td>
+                                @if (!String.IsNullOrEmpty(Model.ihalepaket.FTPDosyaLink1))
+                                {
+                                    <a target="_blank" href="@Model.ihalepaket.FTPDosyaLink1">indirmek için tıklayınız</a>
+                                    <a class="rar_right" target="_blank" href="@Model.ihalepaket.FTPDosyaLink1"><img src="~/images/rar.png" /></a>
+                                }
+                            </td>
+
+                            </tr>
+                        <tr>
+                            <td>Ek Dokümanlar 2</td>
+                            <td>
+                                @if (!String.IsNullOrEmpty(Model.ihalepaket.FTPDosyaLink2))
+                                {
+                                    <a target="_blank" href="@Model.ihalepaket.FTPDosyaLink2">indirmek İçin Tıklayınız</a>
+                                    <a class="rar_right" target="_blank" href="@Model.ihalepaket.FTPDosyaLink2"><img src="~/images/rar.png" /></a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>
+                                İHALE KONUSU
+                            </td>
+                            <td>
+                                <select id="combobox1" class="combobox comb_size form-control"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Proje Adı
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Yapılacağı Yer</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>İhale Tarihi</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Son Teslim Tarihi ve Saati</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>İhale Türü</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>İhale Dokümanları</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Ek Dokümanlar 1</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Ek Dokümanlar 2</td>
+                            <td></td>
+                        </tr>
+                    }
+                </table>
+                <div class="row top_sizec">
+                    <div class="ol-sm-4 col-lg-4 col-md-5">
+                        <a class="a_size" href="~/Home/Qusend/">Yeni Soru Göndermek İçin Tıklayınız</a>
+                    </div>
+                    @if (ViewBag.adminYetki && ViewBag.ihalePaket != null || ViewBag.ihaleYetki && ViewBag.ihalepaket !=null)
+                    {
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <a href="~/Home/Ihleditt/@Model.ihalepaket.ID" class="a_size">İhale Düzenlemesi İçin Tıklayınız</a>
+                        </div>
+                    }
+                    @if (ViewBag.ihaleYetki && !ViewBag.adminYetki && ViewBag.ihalepaket != null)
+                    {
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <a href="~/Home/Authorization/?IhaleID=@Model.ihalepaket.ID&&?ihaleyetki=@ViewBag.ihaleYetki" class="a_size">İhale Yetkilendirmesi İçin Tıklayınız</a>
+                        </div>
+                    }
+                </div>
+                <div class="row top_sizec">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                        <table class="second_design_table">
+                            <tr>
+                                <th style="width:10%">Soru No</th>
+                                <th style="width:37.5%">Aday Firma Soruları</th>
+                                <th style="width:37.5%">İşveren Cevabı</th>
+                                @if (ViewBag.ihaleYetki || ViewBag.adminYetki)
+                                {
+                                    <th style="width:15%">Düzenle</th>
+                                }
+                            </tr>
+                            @if (ViewBag.ihalepaket != null)
+                            {
+                                @foreach (SoruCevap sr in Model.sorucevapList)
+                                {
+                                    if (Model.ihalepaket.ID == sr.IhalePaketID)
+                                    {
+
+                                        <tr>
+                                            @if (ViewBag.adminYetki && ViewBag.ihaleYetki)
+                                            {
+                                              
+                                                <td  style="width:10%; vertical-align:top; text-align:center">@sr.SoruNo</td>
+                                                <td style="width:32.5%">@sr.Soru</td>
+                                                <td style="width:32.5%">@sr.Cevap</td>
+                                                <td style="width:25%;vertical-align:top; text-align:center" >
+                                                    @if(sr.SoruNo != 0 && sr.Cevap != null) {//soru numarası 0 ise(onaylanmamıştır) cevaplama yapamasın.
+                                                        <a href="~/Home/Answer/@sr.ID" class="btn btn-primary">Cevap</a>
+                                                    }
+                                                    <button asp-route-id="@sr.ID" type="submit" class="btn btn_top_left btn-primary">Sil</button>
+                                                </td>
+                                                
+                                            }
+                                            else if (ViewBag.ihaleYetki && !ViewBag.adminYetki)
+                                            {
+                                                @if(sr.SoruNo != 0)
+                                                {
+                                                    <td style="width:10%;vertical-align:top; text-align:center">@sr.SoruNo</td>
+                                                }
+                                                else
+                                                {
+                                                    <td style="width:10%;vertical-align:top; text-align:center"><input  asp-for="@sr.SoruNo" type="number"  min="1"  id="quno" class="form-control textbox_sizepercent" value=""/></td>
+                                                }
+                                                <td style="width:37.5%">@sr.Soru</td>
+                                                <td style="width:37.5%">@sr.Cevap</td>
+                                                <td style="width:15%;vertical-align:top;">
+                                                    @if (sr.SoruNo != 0)
+                                                    {
+                                                        <a href="~/Home/Answer/@sr.ID?IhaleID=@Model.ihalepaket.ID" class="btn btn-primary btn_left">Cevap</a>
+                                                    }
+                                                    else 
+                                                    {
+                                                        <input id="btnshow" type="button" class="btn btn-primary btnonay " value="Onay" style="margin-top:10px;margin-left:5px;" />
+                                                        <p class="p_unvisible p_left btn_top_left" id="text">Onaylandı!</p>
+                                                    }
+                                                </td>
+                                                <td class="p_display">
+                                                    <input type="hidden" id="quid" asp-for="@sr.ID" class="form-control textbox_size" />
+                                                </td>
+                                            }
+                                            else if (!ViewBag.ihaleYetki && ViewBag.adminYetki)
+                                            {
+                                                <td style="width:10%;vertical-align:top; text-align:center">@sr.SoruNo</td>
+                                                <td style="width:37.5%">@sr.Soru</td>
+                                                <td style="width:37.5%">@sr.Cevap</td>
+                                                <td style="width:15%">
+                                                    <button asp-route-id="@sr.ID"style="vertical-align:top; text-align:center" type="submit" class="btn btn_top_left btn-primary">Sil</button>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                if(sr.SoruNo != 0)
+                                                {
+                                                    <td style="width:10%;vertical-align:top; text-align:center">@sr.SoruNo</td>
+                                                    <td style="width:45%">@sr.Soru</td>
+                                                    <td style="width:45%">@sr.Cevap</td>
+                                                }
+                                            }
+
+                                        </tr>
+                                    }
+
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </form>
+
+            <script>
+                $(".btnonay").click(function () {
+
+                    var count = 0;
+                    var values = [];
+
+                    $(this).closest('tr').find('td').find('input').each(function () {
+                        var textval = $(this).val();
+                        count++;
+                     
+                        values[count] = textval;
+                    });
+
+                    $.ajax({
+                        data: { quno: values[1], quid: values[3] },
+                        url: '/Home/Ihl/',
+                        type: "POST",
+                        cache: true,
+                        success: function () {
+                            document.getElementById('btnshow').style.display = 'none';
+                            document.getElementById('text').style.display = 'block';
+
+                            setTimeout(function () {
+                                $("form").submit();
+                            }, 500);
+                        },
+                    });
+                });
+                $("#combobox1").on("change", function () {
+                    $("form").submit();
+                });
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+            
+           

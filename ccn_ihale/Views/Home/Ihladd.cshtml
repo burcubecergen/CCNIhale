@@ -1,0 +1,214 @@
+﻿@model IhaleSoruModel
+@{
+    ViewData["Title"] = "Ihladd";
+    Layout = "~/Views/Shared/_Layout_Second.cshtml";
+}
+
+
+<div class="container top_sizec ">
+    <div class="row">
+        <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-lg-2 col-md-2 col-sm-2 col-xs-4 ">
+            <a href="" id="backgroundandposition"><img src="~/images/login_ccninsaat.PNG" /></a>
+        </div>
+
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+            <h3 class="h3_bold h3_position x_hidden">    
+                İHALE PLATFORMU
+            </h3>
+        </div>
+    </div>
+    @if (ViewBag.adminYetki != false)
+    {
+        <div class="row top_sizec">
+            <div class="col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                <div class="form-popup ">
+                    <div class="row top_sizey">
+                        <div class="col-sm-offset-4 col-xs-offset-3 col-lg-offset-4 col-md-offset-4 col-lg-8 col-md-8 col-sm-8 col-xs-9 ">
+                            <h4 class=" h4_color h4_bold">
+                                İHALE PAKET EKLEME
+                            </h4>
+                        </div>
+                    </div>
+
+                    <form asp-action="Ihladd" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1  col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position">Proje Adı:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                <select asp-for="ProjectID" id="combobox1" class="combobox comb_size form-control">
+
+                                    @foreach (Project pr in Model.projeler)
+                                    {
+
+                                        <option value="@pr.ID">@pr.ProjectName</option>
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1  col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size  p_right p_position">İhale Konusu:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="IhaleKonu" class="form-control textbox_size combo_position_extended" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <p class="p_bold p_colorred">@ViewBag.sign</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass">Yapılacağı Yerler:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                        <input asp-for="YapilacagiYer" class="form-control textbox_size combo_position_extended" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <p class="p_bold p_colorred">@ViewBag.sign</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass ">İhale Tarihi:</p>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 input-append date ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <div class="form-group">
+                                            <div class="input-group date form_datetime textbox_size" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                                <input asp-for="IhaleTarihi" class="form-control" style="font-size:12px;" size="16" value="" readonly>
+                                                <span class="input-group-addon "><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class=" col-lg-5 col-md-5 col-sm-5 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass">Son Teslim Tarihi ve Saati:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 input-append date ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <div class="form-group">
+                                            <div class="input-group date form_datetime textbox_size" data-date-format="yyyy-mm-dd hh:ii" data-link-field="dtp_input1">
+                                                <input asp-for="SonTeslimTarihi" class="form-control" style="font-size:12px;" size="16" value="" readonly>
+                                                <span class="input-group-addon "><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1  col-md-offset-1 col-lg-offset-1  col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position">İhale Türü:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
+                                <select asp-for="IhaleTuru" id="combobox1" class="combobox comb_size form-control">
+                                    <option value="Birim Fiyat Teklif Usülü">Birim Fiyat Teklif Usülü</option>
+                                    <option value="Götürü Bedel">Götürü Bedel</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass">İhale Dokümanı:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="FtpDosyaLink" class="form-control textbox_size" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass">Ek Dokümanlar 1:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="FtpDosyaLink1" class="form-control textbox_size" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row top_sizec">
+                            <div class="col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <p class="p_fonttype p_size p_right p_position p_position_pass">Ek Dokümanlar 2:</p>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8 ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+                                        <input asp-for="FtpDosyaLink2" class="form-control textbox_size" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row top_sizec ">
+                            <div class="col-xs-offset-4 col-md-offset-4 col-sm-offset-4 col-lg-offset-4 col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                <p class="p_bold p_colorred">@ViewBag.error</p>
+                            </div>
+                        </div>
+                        <div class="row top_sizec ">
+                            <div class="col-xs-offset-5 col-md-offset-5 col-lg-offset-5 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                <button type="submit" class="btn btn-primary " style="margin-bottom:10px">Ekle</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row top_sizey">
+            <div class="col-sm-offset-4 col-lg-offset-4 col-md-offset-4">
+                <h3>Yetkiniz Bulunmamaktadır!</h3>
+            </div>
+        </div>
+    }
+</div>

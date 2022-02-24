@@ -1,0 +1,58 @@
+﻿@model Kullanici
+@{
+    ViewData["Title"] = "Usereditt";
+    Layout = "~/Views/Shared/_Layout_Second.cshtml";
+}
+<div class="container top_sizec ">
+    <div class="row">
+        <div class="col-sm-offset-2 col-lg-offset-2 col-md-offset-2 col-lg-2 col-md-2 col-sm-2 col-xs-4 ">
+            <a href="" id="backgroundandposition"><img src="~/images/login_ccninsaat.PNG" /></a>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <h3 class="h3_bold h3_position x_hidden">
+                İHALE PLATFORMU
+            </h3>
+        </div>
+    </div>
+    @if (ViewBag.adminYetki != false)
+    { 
+        <div class="row top_sizec">
+            <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-10 col-md-10 col-lg-10">
+                <div class="form-popup_useradd">
+                    <form asp-action="Usereditt" class="form-container" method="post">
+                        @Html.AntiForgeryToken()
+                        <h1 class="h1_color h1_position">Kullanıcı Düzenle</h1>
+                        <p class="p_fonttype p_bold  p_position">Kullanıcı Adı</p>
+                        <input asp-for="@Model.LoginName" type="text" class="form-control textbox_size">
+                        <p class="p_fonttype p_bold  p_position">Adı Soyadı</p>
+                        <input asp-for="@Model.AdSoyad" type="text" class="form-control textbox_size">
+                        <p class="p_fonttype p_bold  p_position">Şifre</p>
+                        <input asp-for="@Model.Sifre" type="text" class="form-control textbox_size">
+                        <p class="p_fonttype p_bold  p_position">MailAdres</p>
+                        <input asp-for="@Model.MailAdres" type="text" class="form-control textbox_size">
+                        <p class="p_fonttype p_bold  p_position">Unvan</p>
+                        <input asp-for="@Model.Unvan" type="text" class="form-control textbox_size">
+                        
+                        <div class="checkbox checkbox_position">
+                            <p class="p_fonttype p_bold"><input asp-for="@Model.AdminYetki" type="checkbox">Admin Yetki</p>
+                        </div>
+                        <div class="checkbox checkbox_position">
+                            <p class="p_fonttype p_bold"><input asp-for="@Model.Aktif" type="checkbox">Aktif</p>
+                        </div>
+                        <a asp-action="Users" asp-controller="Home" class="btn btn-primary" role="button">Vazgeç</a>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row top_sizey">
+            <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3">
+                <h3>Yetkiniz Bulunmamaktadır!</h3>
+            </div>
+        </div>
+    }
+</div>

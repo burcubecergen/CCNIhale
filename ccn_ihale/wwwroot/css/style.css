@@ -1,50 +1,246 @@
+.navbar {
+    background-color: #000F66;
+}
 
-.navbar{
-	background-color: #172751;
+nav {
+    color: black;
 }
-/*login screen button color_code=#E31D1A*/
+
+.btn_top_left {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.btn_left{
+    margin-left:5px;
+}
+#btnshow{
+    display: block;
+}
+#color_nav {
+    color: white
+}
+
 footer p {
-	color:black;
-	size: 25px;
+    color: black;
+    size: 25px;
 }
-.top_size{
-	margin-top: 100px;
+
+#ihlshow {
+    display: block;
 }
-.top_sizec{
-	margin-top: 25px;
+
+#ihlyn {
+    display: none;
 }
-.h_bold{
-	font-weight: bold;
+#ihlerror {
+    display: none;
+    color:red;
+    font-size: 16px;
+    font-weight: bold;
+
 }
-.h_position{
-	padding-top: 12px;
+
+#ihlsuccess{
+    display: none;
+    color:green;
+    font-size: 16px;
+    font-weight: bold;
 }
-.p_fonttype{
-	font-family: "Trebuchet MS";
-	font-size:16px;
-	font-weight: normal;
+#back,#next{
+    display: none
 }
-.p_bold{
-	font-weight: bold;
+.a_left{
+    margin-left: 150px;
 }
-.textbox_size{
-	width: 200px;
+.top_size {
+    margin-top: 100px;
 }
-.p_right{
-	text-align: right;
+
+.top_sizey {
+    margin-top: 50px;
 }
-.p_position{
-	padding-top: 8px;
+
+.top_sizec {
+    margin-top: 25px;
 }
+
+.h3_bold, .h4_bold {
+    font-weight: bold;
+}
+
+.h1_color, .h4_color {
+    color: #4169E1;
+}
+
+.h1_position {
+    padding-bottom: 30px;
+}
+
+.h3_position {
+    padding-top: 12px;
+}
+
+.p_fonttype {
+    font-family: "Trebuchet MS";
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.p_bold {
+    font-weight: bold;
+}
+
+.p_color {
+    color: #000F66;
+}
+
+.p_colorred {
+    color: red;
+}
+.p_size{
+	font-size: 15px;
+}
+.p_display {
+    display: none
+;}
+
+.textbox_size {
+    width: 200px;
+}
+.new_textbox_size{
+    width: 300px;
+}
+.textbox_sizepercent {
+    width: 100%;
+}
+.comb_size {
+    width: 200px;
+}
+.new_comb_size{
+    width:250px;
+}
+
+.p_right {
+    text-align: right;
+}
+
+.rar_right {
+    margin-left: 20px;
+}
+
+.notification {
+    color: black;
+    font-family: "Trebuchet MS";
+}
+.p_left{
+    margin-left: 5px;
+}
+.p_position {
+    padding-top: 8px;
+}
+.p_unvisible{
+    display: none;
+    color:green;
+    font-family: "Trebuchet MS";
+}
+.btn-primary, .btn-primary:hover, .btn-primary:visited, .btn-primary:active, .btn-primary:active:focus {
+    background-color: #000F66;
+    border-color: #000F66;
+    font-family: "Trebuchet MS";
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.table_design {
+    font-family: "Trebuchet MS";
+    border-collapse: collapse;
+    width: 75%;
+    display: block;
+}
+
+.second_design_table {
+    font-family: "Trebuchet MS";
+    border-collapse: collapse;
+    width: 1000px;
+    display: block;
+}
+
+.table_design td, .table_design th, .second_design_table td, .second_design_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table_design tr:nth-child(even), .second_design_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table_design tr:hover, .second_design_table td:hover {
+    background-color: #ddd;
+}
+
+
+.a_size {
+    font-size: 20px;
+} 
+
+.a_sizex {
+    font-size: 25px;
+}
+
+.checkbox_position {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.form-popup {
+    border: 3px solid #f1f1f1;
+    width: 600px;
+}
+
+.form-popup_useradd {
+    padding-left: 150px;
+    padding-bottom: 50px;
+    border: 3px solid #f1f1f1;
+    width: 500px;
+}
+
+.form-popup_textarea {
+    border: 3px solid #f1f1f1;
+    width: 700px;
+    padding: 30px;
+}
+
+.textarea_size {
+    width: 500px;
+}
+
+footer {
+    margin-right: 20px;
+}
+
+
 
 @media only screen and (max-width: 768px) {
-.p_right{
-	text-align: right;
+    .p_position_pass {
+        padding-left: 50px;
+    }
+	.p_size{
+		font-size: 10px;
+	}
+    .center_footer {
+        text-align: center;
+    }
+
+    .h3_position {
+        padding-top: 12px;
+        margin-left: 20%;
+    }
+
+   
 }
-.p_position_pass{
-	padding-left:50px;
-}
-.center_footer{
-	text-align: center;
-}
+
+@media only screen and (max-width: 440px) {
+    .x_hidden {
+        display: none;
+    }
 }
